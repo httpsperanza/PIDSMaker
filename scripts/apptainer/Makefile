@@ -1,5 +1,5 @@
 # Makefile for Singularity/Apptainer PostgreSQL management
-
+SHELL := /bin/bash
 .PHONY: up down status load-dumps full-setup logs clean help
 
 # PostgreSQL management

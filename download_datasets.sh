@@ -68,7 +68,7 @@ download_trace_e5() {
 
 ALL_DATASETS="cadets_e3 clearscope_e3 theia_e3 theia_e5 clearscope_e5 \
 optc_h051 optc_h201 optc_h501 cadets_e5 trace_e3 \
-fivedirections_e3 fivedirections_e5 trace_e5"
+fivedirections_e3 fivedirections_e5 trace_e5 atlasv2_edr carbanakv2_edr"
 
 if [ "$DATASETS_ARG" = "all" ]; then
   SELECTED="$ALL_DATASETS"

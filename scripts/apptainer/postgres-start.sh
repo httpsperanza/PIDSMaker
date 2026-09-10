@@ -128,5 +128,26 @@ for i in {1..30}; do
 done
 
 echo -e "${RED}PostgreSQL failed to start within 60 seconds${NC}"
-$CONTAINER_CMD instance stop $POSTGRES_INSTANCE 2>/dev/null || true
+#$CONTAINER_CMD instance stop $POSTGRES_INSTANCE 2>/dev/null || true
+#exit 1
+
+# Wait for PostgreSQL to be ready
+echo -e "${YELLOW}Waiting for PostgreSQL to start...${NC}"
+MAX_WAIT=300   # 300 x 2s = 10 minuti, aumenta se serve
+for i in $(seq 1 $MAX_WAIT); do
+    if $CONTAINER_CMD exec instance://$POSTGRES_INSTANCE pg_isready -h localhost -U postgres > /dev/null 2>&1; then
+        echo -e "${GREEN}PostgreSQL is ready!${NC}"
+        echo -e "${GREEN}Connection: $CONTAINER_CMD exec instance://$POSTGRES_INSTANCE psql -h localhost -U postgres${NC}"
+        echo -e "${GREEN}Instance: $POSTGRES_INSTANCE${NC}"
+        exit 0
+    fi
+    # Se il log mostra che il redo sta ancora avanzando, continua ad aspettare
+    echo -n "."
+    sleep 2
+done
+
+echo -e "${RED}PostgreSQL failed to start within $((MAX_WAIT*2)) seconds${NC}"
+echo -e "${YELLOW}NOT stopping the instance — recovery may still be in progress.${NC}"
+echo -e "${YELLOW}Check logs: tail -f ${LOG_DIR}/postgresql*.log${NC}"
+echo -e "${YELLOW}If recovery is stuck (LSN not advancing), stop manually with: $CONTAINER_CMD instance stop $POSTGRES_INSTANCE${NC}"
 exit 1
