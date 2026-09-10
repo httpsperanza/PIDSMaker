@@ -195,8 +195,8 @@ DATASET_DEFAULT_CONFIG = {
     },
     "optc_h201": {
         "raw_dir": "",
-        "database": "optc_201",
-        "database_all_file": "optc_201",
+        "database": "optc_h201",
+        "database_all_file": "optc_h201",
         "num_node_types": 3,
         "num_edge_types": 10,
         "start_date": "2019-09-15",
@@ -214,8 +214,8 @@ DATASET_DEFAULT_CONFIG = {
     },
     "optc_h501": {
         "raw_dir": "",
-        "database": "optc_501",
-        "database_all_file": "optc_501",
+        "database": "optc_h501",
+        "database_all_file": "optc_h501",
         "num_node_types": 3,
         "num_edge_types": 10,
         "start_date": "2019-09-15",
@@ -233,8 +233,8 @@ DATASET_DEFAULT_CONFIG = {
     },
     "optc_h051": {
         "raw_dir": "",
-        "database": "optc_051",
-        "database_all_file": "optc_051",
+        "database": "optc_h051",
+        "database_all_file": "optc_h051",
         "num_node_types": 3,
         "num_edge_types": 10,
         "start_date": "2019-09-15",
